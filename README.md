@@ -7,7 +7,8 @@ We will be creating a tower defense style game which involves a map, moving enem
 ### Classes
 
 ### Credits 
-#### Project Lead — Keshav Gurushankar
+#### Project Lead - Keshav Gurushankar
 #### Team 
-	Jeremy Honma, Jatin Alla 
-#### Assets — Vladimir Malinouski
+	Jeremy Honma
+	Jatin Alla 
+#### Assets - Vladimir Malinouski
