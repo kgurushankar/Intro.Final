@@ -1,5 +1,6 @@
 package view;
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,12 +13,12 @@ import javax.swing.JPanel;
 
 import levels.*;
 
-public class Map extends JPanel {
+public class Game extends JPanel {
 	private Level level;
 	private Image[] path = new Image[16];
-	private int interval = 64;
+	private int interval = 128;
 
-	public Map() {
+	public Game() {
 		level = new Level1();
 		String root = System.getProperty("user.dir");
 		root = root.replace('\\', '/');
@@ -32,25 +33,15 @@ public class Map extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		((Graphics2D) g).scale(getWidth() / (interval * 30f), getHeight() / (interval * 20f));
+		((Graphics2D) g).scale(getWidth() / (interval * 15f), getHeight() / (interval * 10f));
 
-		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 30; j++) {
-				g.drawImage(path[level.getStateAt(i, j)], j * interval, i * interval, this);
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 15; j++) {
+				g.drawImage(path[level.getMap().getStateAt(i, j)], j * interval, i * interval, this);
 			}
 		}
 	}
 
-	public static void main(String[] args) {
-		JFrame w = new JFrame("Scenic Landscape");
-		w.setBounds(100, 100, 800, 600);
-		w.setDefaultCloseOperation(3);
-		Map panel = new Map();
-		panel.setBackground(Color.WHITE);
-		w.add(panel);
-		w.setResizable(true);
-		w.setVisible(true);
-	}
 
 	private Image loadImageFromFile(String FileLoc) {
 		try {
