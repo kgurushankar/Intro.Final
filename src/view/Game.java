@@ -55,4 +55,14 @@ public class Game extends JPanel {
 		return null;
 
 	}
+
+	public void resume() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
 }
