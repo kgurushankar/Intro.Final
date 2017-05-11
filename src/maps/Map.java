@@ -30,7 +30,7 @@ public interface Map {
 	/**
 	 * Returns complete map data for this level
 	 * 
-	 * @see maps.Map#getStateAt(int x,int y)
+	 * @see maps.Map#getStateAt(int,int)
 	 */
 	byte[][] getStateArr();
 
@@ -65,8 +65,48 @@ public interface Map {
 	 *         This triggers a call to check if the enemy is at the ending point
 	 *         </td>
 	 *         </tr>
+	 *         </table>
+	 * 
+	 * @see maps.Map#getDirArr()
 	 */
 	byte getDirAt(int x, int y);
+
+	/**
+	 * Returns complete directoinal data for this level
+	 * 
+	 * @return
+	 *         <table>
+	 *         <tr>
+	 *         <td>0</td>
+	 *         <td>not part of path</td>
+	 *         </tr>
+	 *         <tr>
+	 *         <td>1</td>
+	 *         <td>up</td>
+	 *         </tr>
+	 *         <tr>
+	 *         <td>2</td>
+	 *         <td>right</td>
+	 *         </tr>
+	 *         <tr>
+	 *         <td>3</td>
+	 *         <td>down</td>
+	 *         </tr>
+	 *         <tr>
+	 *         <td>4</td>
+	 *         <td>left</td>
+	 *         </tr>
+	 *         <tr>
+	 *         <td valign="top">5</td>
+	 *         <td>ending point <br />
+	 *         This triggers a call to check if the enemy is at the ending point
+	 *         </td>
+	 *         </tr>
+	 *         </table>
+	 * 
+	 * @see maps.Map#getDirAt(int, int)
+	 */
+	byte[][] getDirArr();
 
 	/**
 	 * Gets the starting point for the map
