@@ -1,22 +1,29 @@
 package view;
 
-
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Timer;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import enemy.Enemy;
 import levels.*;
+import towers.Tower;
 
-public class Game extends JPanel {
+public class Game extends JPanel implements ActionListener {
 	private Level level;
 	private Image[] path = new Image[16];
-	private int interval = 128;
+	private int interval = 64;
+	private boolean running = false;
+	private ArrayList<Tower> tower;
+	private ArrayList<Enemy> enemy;
+	private Timer tick;
 
 	public Game() {
 		level = new Level1();
@@ -29,6 +36,8 @@ public class Game extends JPanel {
 			path[i] = loadImageFromFile(root + i + ".jpg");
 			path[i] = path[i].getScaledInstance(interval, interval, Image.SCALE_SMOOTH);
 		}
+		Timer tick = new Timer(100, this);
+		running = true;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -36,12 +45,15 @@ public class Game extends JPanel {
 		((Graphics2D) g).scale(getWidth() / (interval * 15f), getHeight() / (interval * 10f));
 
 		for (int i = 0; i < 10; i++) {
+			g.drawLine(0, interval * (i + 1), interval * 10, interval * (i + 1));
+
 			for (int j = 0; j < 15; j++) {
+				g.drawLine(interval * (j + 1), 0, interval * (j + 1), interval * 10);
+
 				g.drawImage(path[level.getMap().getStateAt(i, j)], j * interval, i * interval, this);
 			}
 		}
 	}
-
 
 	private Image loadImageFromFile(String FileLoc) {
 		try {
@@ -57,12 +69,24 @@ public class Game extends JPanel {
 	}
 
 	public void resume() {
-		// TODO Auto-generated method stub
-		
+		running = true;
 	}
 
 	public void pause() {
+		running = false;
+	}
+
+	public void run() {
+		while (true) {
+			while (running) {
+
+			}
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
