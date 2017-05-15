@@ -41,7 +41,11 @@ public class Main extends JFrame implements ComponentListener, KeyListener, Mous
 		int W = 4;
 		int H = 3;
 		Rectangle b = arg0.getComponent().getBounds();
-		arg0.getComponent().setBounds(b.x, b.y, b.width, b.width * H / W);
+		if (b.getWidth() * H >= b.getHeight() * W) {
+			arg0.getComponent().setBounds(b.x, b.y, b.height * W / H, b.height);
+		} else {
+			arg0.getComponent().setBounds(b.x, b.y, b.width, b.width * H / W);
+		}
 
 	}
 
