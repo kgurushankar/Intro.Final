@@ -72,7 +72,7 @@ public interface Map {
 	byte getDirAt(int x, int y);
 
 	/**
-	 * Returns complete directoinal data for this level
+	 * Returns complete directional data for this level
 	 * 
 	 * @return
 	 *         <table>

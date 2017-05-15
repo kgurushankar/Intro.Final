@@ -46,13 +46,13 @@ public class Snake implements Map {
 
 	@Override
 	public byte[] getStartingLocation() {
-		byte temp[] = { 0, 0 };
+		byte temp[] = { 0, 3 };
 		return temp;
 	}
 
 	@Override
 	public byte[] getEndingLocation() {
-		byte temp[] = { 14, 9 };
+		byte temp[] = { 14, 6 };
 		return temp;
 	}
 
