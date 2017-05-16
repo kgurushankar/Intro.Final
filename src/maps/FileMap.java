@@ -37,7 +37,11 @@ public class FileMap implements Map {
 	 * <td>state,direction</td>
 	 * </tr>
 	 * </table>
-	 * so 15 state,direction pairs separated by spaces
+	 * so 15 state,direction pairs separated by spaces <br />
+	 * <br />
+	 * At the end, there should be two lines that represent the starting and
+	 * ending location respectively <br />
+	 * Format for those lines is: x y
 	 */
 	public FileMap(String file) {
 		File src = new File(file);
@@ -57,6 +61,14 @@ public class FileMap implements Map {
 					dir[i][j] = Byte.parseByte(temp[1]);
 				}
 			}
+			StringTokenizer st = new StringTokenizer(f.readLine());
+			start = new byte[2];
+			start[0] = Byte.parseByte(st.nextToken());
+			start[1] = Byte.parseByte(st.nextToken());
+			st = new StringTokenizer(f.readLine());
+			end = new byte[2];
+			end[0] = Byte.parseByte(st.nextToken());
+			end[1] = Byte.parseByte(st.nextToken());
 		} catch (Exception e) {
 
 		}
