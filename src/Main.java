@@ -135,7 +135,7 @@ public class Main extends JFrame implements ComponentListener, KeyListener, Mous
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_P) {
 			System.out.println("P");
-			if (paused) {
+			if (game.isPaused()) {
 				game.resume();
 			} else {
 				game.pause();
