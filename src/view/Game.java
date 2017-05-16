@@ -36,7 +36,7 @@ public class Game extends JPanel implements ActionListener {
 			path[i] = loadImageFromFile(root + i + ".jpg");
 			path[i] = path[i].getScaledInstance(interval, interval, Image.SCALE_SMOOTH);
 		}
-		Timer tick = new Timer(100, this);
+	//	Timer tick = new Timer(100, this);
 		running = true;
 	}
 
