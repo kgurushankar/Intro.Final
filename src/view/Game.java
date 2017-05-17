@@ -95,6 +95,7 @@ public class Game extends JPanel implements ActionListener {
 	}
 
 	private void perTick() {
+		// Enemy code
 		for (int i = 0; i < enemy.size(); i++) {
 			Enemy e = enemy.get(i);
 			if (e.isDead()) {
@@ -121,6 +122,8 @@ public class Game extends JPanel implements ActionListener {
 				e.followPath();
 			}
 		}
+
+		// Tower code
 	}
 
 	public boolean isPaused() {
