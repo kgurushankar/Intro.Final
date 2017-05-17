@@ -7,17 +7,17 @@
 	</tr>	
 	<tr>
 		<td>Orc with a Hammer</td>
-		<td>100 Hit Points</td>
+		<td>100</td>
 		<td>10</td>
 	</tr>
 	<tr>
 		<td>Orc with a Sword</td>
-		<td>150 Hit Points</td>
+		<td>150</td>
 		<td>15</td>
 	</tr>
 	<tr>
 		<td>Orc with a Axe</td>
-		<td>200 Hit Points</td>
+		<td>200</td>
 		<td>20</td>
 	</tr>
 </table>
