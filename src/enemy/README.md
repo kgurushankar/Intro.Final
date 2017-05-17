@@ -1,4 +1,4 @@
-#Stats for enemies
+# Stats for enemies
 <table>
 	<tr>
 		<th>Enemy</th>
