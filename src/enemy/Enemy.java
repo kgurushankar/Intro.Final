@@ -2,11 +2,14 @@ package enemy;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 import view.Game;
 
 public abstract class Enemy {
-	private byte health;
+	private int health;
 	private int x;
 	private int y;
 	/** Max speed is 10 */
@@ -27,7 +30,7 @@ public abstract class Enemy {
 	private Image img;
 	private boolean needsNewDir = false;
 
-	public Enemy(int x, int y, byte health, byte speed, byte value) {
+	public Enemy(int x, int y, int health, byte speed, byte value) {
 		this.health = health;
 		this.x = x;
 		this.y = y;
@@ -60,22 +63,21 @@ public abstract class Enemy {
 
 	public void followPath() {
 		if (getLoc() == target) {
-			getDirections();
-			return;
+			this.needsNewDir = true;
 		}
 
 		int dx;
 		int dy;
 		if (x < (target[0] * Game.interval)) { // Right
-			dx = Game.interval / 10 * speed;
+			dx = Game.interval / 20 * speed;
 		} else { // Left
-			dx = Game.interval / 10 * -speed;
+			dx = Game.interval / 20 * -speed;
 		}
 
 		if (y > (target[1] * Game.interval)) { // Up
-			dy = Game.interval / 10 * speed;
+			dy = Game.interval / 20 * speed;
 		} else { // Down
-			dy = Game.interval / 10 * -speed;
+			dy = Game.interval / 20 * -speed;
 
 		}
 		move(dx, dy);
@@ -135,10 +137,24 @@ public abstract class Enemy {
 
 	public void setTarget(byte[] target) {
 		this.target = target;
+		this.needsNewDir = false;
 	}
 
 	public byte getValue() {
 		return value;
+	}
+
+	protected Image loadImageFromFile(String FileLoc) {
+		try {
+			Image temp = ImageIO.read(new File(FileLoc));
+			return temp;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("File " + FileLoc + " not Found");
+			System.exit(1);
+		}
+		return null;
+
 	}
 
 }

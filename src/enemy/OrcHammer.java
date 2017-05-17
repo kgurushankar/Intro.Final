@@ -6,7 +6,7 @@ public class OrcHammer extends Enemy {
 
 
 	public OrcHammer(int x, int y) {
-		super(x, y, health, speed, value);
+		super(x, y, 100, (byte) 3, (byte) 10);
 		// TODO Auto-generated constructor stub
 	}
 

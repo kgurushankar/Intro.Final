@@ -4,12 +4,10 @@ import java.awt.Image;
 
 public class OrcSword extends Enemy {
 
-
 	public OrcSword(int x, int y) {
-		super(x, y, health, speed, value);
+		super(x, y, 150, (byte) 7, (byte) 15);
 		// TODO Auto-generated constructor stub
 	}
-
 
 	@Override
 	protected Image[] getDieImg() {
