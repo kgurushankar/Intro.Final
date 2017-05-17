@@ -50,11 +50,7 @@ public class Game extends JPanel implements ActionListener {
 		((Graphics2D) g).scale(getWidth() / (interval * 15f), getHeight() / (interval * 10f));
 
 		for (int i = 0; i < 10; i++) {
-			g.drawLine(0, interval * (i + 1), interval * 10, interval * (i + 1));
-
 			for (int j = 0; j < 15; j++) {
-				g.drawLine(interval * (j + 1), 0, interval * (j + 1), interval * 10);
-
 				g.drawImage(path[level.getMap().getStateAt(i, j)], j * interval, i * interval, this);
 			}
 		}
