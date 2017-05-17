@@ -10,7 +10,7 @@ public class Level1 implements Level {
 	@Override
 	public Map getMap() {
 		// TODO Auto-generated method stub
-		return new Maze();
+		return new SnakeHorizontal();
 	}
 
 }
