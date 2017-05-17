@@ -13,4 +13,15 @@ public class Level1 implements Level {
 		return new SnakeHorizontal();
 	}
 
+	@Override
+	public byte[] getEnemyatTicks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public byte getEnemyatTick(int tick) {
+		return getEnemyatTicks()[tick];
+	}
+
 }

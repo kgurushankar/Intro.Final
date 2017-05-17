@@ -13,8 +13,9 @@ public interface Level {
 
 	/**
 	 * Index represents the tick<br />
-	 * The value is the enemy that comes at the tick
-	 * 
+	 * The value is the enemy that comes at the tick <br />
+	 * Ticks are 50ms each <br />
+	 * <br />
 	 * <table>
 	 * <tr>
 	 * <th>ID</th>
@@ -39,7 +40,9 @@ public interface Level {
 	byte[] getEnemyatTicks();
 
 	/**
-	 * The value is the enemy that comes at the tick
+	 * The value is the enemy that comes at the tick<br />
+	 * Ticks are 50ms each <br />
+	 * <br />
 	 * 
 	 * <table>
 	 * <tr>
@@ -62,6 +65,6 @@ public interface Level {
 	 * 
 	 * @see levels.Level#getEnemyatTicks()
 	 */
-	byte getEnemyatTick(int Tick);
+	byte getEnemyatTick(int tick);
 
 }
