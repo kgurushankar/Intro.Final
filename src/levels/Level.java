@@ -11,6 +11,57 @@ public interface Level {
 	/** Returns map for this level */
 	Map getMap();
 
-	// Some form of enemy sequencing so prob an array that runs off of (timing
-	// in ms, enemy type) best bet would be (int/long, byte) but thats hard
+	/**
+	 * Index represents the tick<br />
+	 * The value is the enemy that comes at the tick
+	 * 
+	 * <table>
+	 * <tr>
+	 * <th>ID</th>
+	 * <th>Enemy</th>
+	 * </tr>
+	 * <tr>
+	 * <td>0</td>
+	 * <td>Orc with Hammer</td>
+	 * </tr>
+	 * <tr>
+	 * <td>1</td>
+	 * <td>Orc with Sword</td>
+	 * </tr>
+	 * <tr>
+	 * <td>2</td>
+	 * <td>Orc with Axe</td>
+	 * </tr>
+	 * </table>
+	 * 
+	 * @see levels.Level#getEnemyatTick(int)
+	 */
+	byte[] getEnemyatTicks();
+
+	/**
+	 * The value is the enemy that comes at the tick
+	 * 
+	 * <table>
+	 * <tr>
+	 * <th>ID</th>
+	 * <th>Enemy</th>
+	 * </tr>
+	 * <tr>
+	 * <td>0</td>
+	 * <td>Orc with Hammer</td>
+	 * </tr>
+	 * <tr>
+	 * <td>1</td>
+	 * <td>Orc with Sword</td>
+	 * </tr>
+	 * <tr>
+	 * <td>2</td>
+	 * <td>Orc with Axe</td>
+	 * </tr>
+	 * </table>
+	 * 
+	 * @see levels.Level#getEnemyatTicks()
+	 */
+	byte getEnemyatTick(int Tick);
+
 }
