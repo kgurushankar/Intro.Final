@@ -9,6 +9,6 @@ We are going to be implementing towers and enemies using classes. We have not ye
 ### Credits 
 #### Project Lead - Keshav Gurushankar
 #### Team 
-Jeremy Honma
+Jeremy Honma<br>
 Jatin Alla 
 #### Assets - Vladimir Malinouski 
