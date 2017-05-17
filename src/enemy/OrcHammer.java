@@ -3,23 +3,33 @@ package enemy;
 import java.awt.Image;
 
 public class OrcHammer extends Enemy {
-
+	private Image[] die;
+	private Image[] walk;
 
 	public OrcHammer(int x, int y) {
 		super(x, y, 100, (byte) 3, (byte) 10);
-		// TODO Auto-generated constructor stub
+		String fileloc = "Hammer/DIE/DIE_00";
+		die = new Image[7];
+		for (int i = 0; i < 7; i++) {
+			die[i] = super.loadImageFromFile(fileloc + i + ".png");
+		}
+		fileloc = "Hammer/WALK/WALK_00";
+		walk = new Image[7];
+		for (int i = 0; i < 7; i++) {
+			walk[i] = super.loadImageFromFile(fileloc + i + ".png");
+		}
 	}
 
 	@Override
 	protected Image[] getDieImg() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return die;
 	}
 
 	@Override
 	protected Image[] getWalkImg() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return walk;
 	}
 
 }

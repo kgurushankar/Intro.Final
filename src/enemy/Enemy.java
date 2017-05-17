@@ -145,8 +145,11 @@ public abstract class Enemy {
 	}
 
 	protected Image loadImageFromFile(String FileLoc) {
+		String root = (System.getProperty("user.dir")).replace('\\', '/');
+		root+="/assets/Orc/";
+		
 		try {
-			Image temp = ImageIO.read(new File(FileLoc));
+			Image temp = ImageIO.read(new File(root+FileLoc));
 			return temp;
 		} catch (Exception e) {
 			e.printStackTrace();
