@@ -11,12 +11,6 @@ public class OrcHammer extends Enemy {
 	}
 
 	@Override
-	public int getDirections() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	protected Image[] getDieImg() {
 		// TODO Auto-generated method stub
 		return null;

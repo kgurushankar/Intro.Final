@@ -10,11 +10,6 @@ public class OrcAxe extends Enemy {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public int getDirections() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	protected Image[] getDieImg() {

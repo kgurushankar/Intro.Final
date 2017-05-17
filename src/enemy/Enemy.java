@@ -98,9 +98,6 @@ public abstract class Enemy {
 		return img;
 	}
 
-	/** Somehow update directions */
-	public abstract int getDirections();
-
 	public void die() {
 
 		this.img = getDieImg()[stage];
