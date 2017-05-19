@@ -55,11 +55,12 @@ public class Game extends JPanel implements ActionListener {
 			}
 		}
 		for (int i = 0; i < tower.size(); i++) {
-			tower.get(i).draw(g);
+//			tower.get(i).draw(g);
 		}
 		for (int i = 0; i < enemy.size(); i++) {
 			enemy.get(i).draw(g);
 		}
+
 	}
 
 	private Image loadImageFromFile(String FileLoc) {

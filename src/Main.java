@@ -81,6 +81,7 @@ public class Main extends JFrame implements ComponentListener, KeyListener, Mous
 	public static void main(String[] args) {
 		Main m = new Main();
 		m.startGame();
+		
 	}
 
 	@Override
