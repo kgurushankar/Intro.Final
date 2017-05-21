@@ -1,4 +1,4 @@
-package enemy;
+package field.enemy;
 
 import java.awt.Image;
 

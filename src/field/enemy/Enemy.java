@@ -1,4 +1,4 @@
-package enemy;
+package field.enemy;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,15 +6,11 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import field.Item;
 import view.Game;
 
-public abstract class Enemy {
+public abstract class Enemy extends Item{
 	private int health;
-	private int x;
-	private int y;
-	/** Max speed is 10 */
-	private byte speed;
-	private byte value; // on kill
 	/**
 	 * this says where this is going to go on the 15*10 grid <br />
 	 * format is (x,y)
@@ -27,29 +23,14 @@ public abstract class Enemy {
 	 */
 	private byte stage = 0;
 	private boolean alive = true;
-	private Image img;
-	private boolean needsNewDir = false;
 
 	public Enemy(int x, int y, int health, byte speed, byte value) {
+		super(x,y,speed,value);
 		this.health = health;
-		this.x = x;
-		this.y = y;
-		this.speed = speed;
-		this.value = value;
 	}
 
 	public void loseHealth(double x) {
 		health = ((byte) (health - x));
-	}
-
-	/** Returns absolute x!! */
-	public int getX() {
-		return x;
-	}
-
-	/** Returns absolute y!! */
-	public int getY() {
-		return y;
 	}
 
 	public double getHealth() {
@@ -63,7 +44,7 @@ public abstract class Enemy {
 
 	public void followPath() {
 		if (getLoc() == target) {
-			this.needsNewDir = true;
+			this.needsNewGoal = true;
 		}
 
 		int dx;
@@ -86,18 +67,6 @@ public abstract class Enemy {
 	private void move(int x, int y) {
 		this.x = x;
 		this.y = y;
-	}
-
-	public void draw(Graphics g) {
-		g.drawImage(this.getImage(), x, y, null);
-	}
-
-	public byte[] getLoc() {
-		return new byte[] { (byte) (x / Game.interval), (byte) (y / Game.interval) };
-	}
-
-	protected Image getImage() {
-		return img;
 	}
 
 	public void die() {
@@ -132,31 +101,16 @@ public abstract class Enemy {
 	}
 
 	public boolean needsNewDir() {
-		return this.needsNewDir;
+		return this.needsNewGoal;
 	}
 
 	public void setTarget(byte[] target) {
 		this.target = target;
-		this.needsNewDir = false;
-	}
-
-	public byte getValue() {
-		return value;
+		this.needsNewGoal = false;
 	}
 
 	protected Image loadImageFromFile(String FileLoc) {
-		String root = (System.getProperty("user.dir")).replace('\\', '/');
-		root+="/assets/Orc/";
-		
-		try {
-			Image temp = ImageIO.read(new File(root+FileLoc));
-			return temp;
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("File " + FileLoc + " not Found");
-			System.exit(1);
-		}
-		return null;
+		return super.loadImageFromFile("Orc/"+FileLoc);
 
 	}
 

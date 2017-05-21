@@ -9,12 +9,13 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.swing.Timer;
 
+import field.enemy.Enemy;
+import field.tower.Tower;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import enemy.Enemy;
 import levels.*;
-import towers.Tower;
 
 public class Game extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1;
