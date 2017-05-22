@@ -9,8 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.swing.Timer;
 
-import field.enemy.Enemy;
-import field.tower.Tower;
+import field.enemy.*;
+import field.tower.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -21,7 +21,7 @@ public class Game extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1;
 	public static final int interval = 64;
 
-	private Level level;
+	private static Level level;
 	private Image[] path = new Image[16];
 	private boolean running = false;
 	private ArrayList<Tower> tower = new ArrayList<Tower>();
@@ -42,21 +42,23 @@ public class Game extends JPanel implements ActionListener {
 			path[i] = loadImageFromFile(root + i + ".jpg");
 			path[i] = path[i].getScaledInstance(interval, interval, Image.SCALE_SMOOTH);
 		}
+		enemy.add(new OrcAxe(0, 0, this));
 		tick = new Timer(50, this);
 		tick.start();
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		((Graphics2D) g).scale(getWidth() / (interval * 15f), getHeight() / (interval * 10f));
+		((Graphics2D) g).scale(getWidth() / (interval * (15f+2f)), getHeight() / (interval * 10f));
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 15; j++) {
 				g.drawImage(path[level.getMap().getStateAt(i, j)], j * interval, i * interval, this);
 			}
 		}
+		
 		for (int i = 0; i < tower.size(); i++) {
-//			tower.get(i).draw(g);
+			// tower.get(i).draw(g);
 		}
 		for (int i = 0; i < enemy.size(); i++) {
 			enemy.get(i).draw(g);
@@ -126,5 +128,21 @@ public class Game extends JPanel implements ActionListener {
 
 	public boolean isPaused() {
 		return this.running;
+	}
+
+	public static Level getLevel() {
+		return level;
+	}
+
+	public void removeEnemy(Enemy e) {
+		enemy.remove(e);
+	}
+
+	public void loseLife() {
+		lives--;
+	}
+
+	public void balance(byte value) {
+		this.balance += value;
 	}
 }

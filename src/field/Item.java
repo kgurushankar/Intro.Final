@@ -11,18 +11,22 @@ import view.Game;
 public abstract class Item {
 	protected int x;
 	protected int y;
-	/** Max speed is 10 <br />
-	 * Hit speed for towers and */
+	/**
+	 * Max speed is 10 <br />
+	 * Hit speed for towers and
+	 */
 	protected byte speed;
 	protected byte value; // price/payout
 	protected Image img;
 	protected boolean needsNewGoal = false;
+	protected Game game;
 
-	public Item(int x, int y, byte speed, byte value) {
+	public Item(int x, int y, byte speed, byte value, Game game) {
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
 		this.value = value;
+		this.game = game;
 	}
 
 	/** Returns absolute x!! */
@@ -59,7 +63,7 @@ public abstract class Item {
 
 		try {
 			Image temp = ImageIO.read(new File(root + FileLoc));
-			return temp;
+			return temp.getScaledInstance(Game.interval, Game.interval, Image.SCALE_SMOOTH);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("File " + FileLoc + " not Found");
