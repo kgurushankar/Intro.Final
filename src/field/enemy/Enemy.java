@@ -1,11 +1,6 @@
 package field.enemy;
 
-import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
 import field.Item;
 import view.Game;
 
