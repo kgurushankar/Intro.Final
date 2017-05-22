@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class TitleScreen extends JPanel {
 
+	
+	private static final long serialVersionUID = 1L;
 	private Image img, background;
 	int w = 100;
 	int h = 100;
