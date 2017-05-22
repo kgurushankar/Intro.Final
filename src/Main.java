@@ -13,6 +13,8 @@ import view.Game;
 import view.TitleScreen;
 
 public class Main extends JFrame implements ComponentListener, KeyListener, MouseListener {
+	
+	private static final long serialVersionUID = 1L;
 	Game game;
 	TitleScreen title;
 	boolean gameRunning;

@@ -27,8 +27,7 @@ public class Game extends JPanel implements ActionListener {
 	private ArrayList<Tower> tower = new ArrayList<Tower>();
 	private ArrayList<Enemy> enemy = new ArrayList<Enemy>();
 	private Timer tick;
-	private int balance;
-	private int lives;
+
 
 	public Game() {
 		level = new Level1();
