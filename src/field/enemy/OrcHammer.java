@@ -2,12 +2,14 @@ package field.enemy;
 
 import java.awt.Image;
 
+import view.Game;
+
 public class OrcHammer extends Enemy {
 	private Image[] die;
 	private Image[] walk;
 
-	public OrcHammer(int x, int y) {
-		super(x, y, 100, (byte) 3, (byte) 10);
+	public OrcHammer(int x, int y, Game g) {
+		super(x, y, 100, (byte) 3, (byte) 10, g);
 		String fileloc = "Hammer/DIE/DIE_00";
 		die = new Image[7];
 		for (int i = 0; i < 7; i++) {

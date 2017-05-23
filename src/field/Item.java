@@ -20,7 +20,6 @@ public abstract class Item {
 	protected byte value; // price/payout
 	protected Image img;
 
-	protected boolean needsNewGoal = true;
 	protected Game game;
 	public Item(int x, int y, byte speed, byte value, Game game) {
 		this.x = x;

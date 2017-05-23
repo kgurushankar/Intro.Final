@@ -2,12 +2,14 @@ package field.enemy;
 
 import java.awt.Image;
 
+import view.Game;
+
 public class OrcSword extends Enemy {
 	private Image[] die;
 	private Image[] walk;
 
-	public OrcSword(int x, int y) {
-		super(x, y, 150, (byte) 7, (byte) 15);
+	public OrcSword(int x, int y, Game g) {
+		super(x, y, 150, (byte) 7, (byte) 15, g);
 		String fileloc = "Sword/DIE/DIE_00";
 		die = new Image[7];
 		for (int i = 0; i < 7; i++) {

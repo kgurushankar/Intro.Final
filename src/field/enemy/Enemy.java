@@ -42,13 +42,17 @@ public abstract class Enemy extends Item {
 			byte[] loc = this.getLoc();
 			byte dir = Game.getLevel().getMap().getDirAt(loc[0], loc[1]);
 			if (dir == 1) { // up
-				this.setTarget(new byte[] { loc[0], (byte) (loc[1] + 1) });
+				this.target[0] = loc[0];
+				this.target[1] = (byte) (loc[1] + 1);
 			} else if (dir == 2) {// left
-				this.setTarget(new byte[] { (byte) (loc[0] + 1), loc[1] });
+				this.target[0] = (byte) (loc[0] + 1);
+				this.target[1] = loc[1];
 			} else if (dir == 3) {// down
-				this.setTarget(new byte[] { loc[0], (byte) (loc[1] - 1) });
+				this.target[0] = loc[0];
+				this.target[1] = (byte) (loc[1] - 1);
 			} else if (dir == 4) {// right
-				this.setTarget(new byte[] { (byte) (loc[0] - 1), loc[1] });
+				this.target[0] = (byte) (loc[0] - 1);
+				this.target[1] = loc[1];
 			} else if (dir == 5) {// end
 				game.removeEnemy(this);
 				game.loseLife();
@@ -107,15 +111,6 @@ public abstract class Enemy extends Item {
 
 	public boolean isDead() {
 		return !alive && stage >= 6;
-	}
-
-	public boolean needsNewDir() {
-		return this.needsNewGoal;
-	}
-
-	public void setTarget(byte[] target) {
-		this.target = target;
-		this.needsNewGoal = false;
 	}
 
 	protected Image loadImageFromFile(String FileLoc) {
