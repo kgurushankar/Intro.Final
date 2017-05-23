@@ -46,7 +46,7 @@ public abstract class Item {
 	}
 
 	public byte[] getLoc() {
-		return new byte[] { (byte) (x / Game.interval), (byte) (y / Game.interval) };
+		return new byte[] { (byte) (x / Game.interval * 1.0), (byte) (y / Game.interval * 1.0) };
 	}
 
 	protected Image getImage() {
