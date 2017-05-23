@@ -21,6 +21,7 @@ public abstract class Item {
 	protected Image img;
 
 	protected Game game;
+
 	public Item(int x, int y, byte speed, byte value, Game game) {
 		this.x = x;
 		this.y = y;
@@ -64,7 +65,7 @@ public abstract class Item {
 
 		try {
 			Image temp = ImageIO.read(new File(root + FileLoc));
-			return temp.getScaledInstance(Game.interval, Game.interval, Image.SCALE_SMOOTH);
+			return temp.getScaledInstance(Game.interval * 3 / 4, Game.interval * 3 / 4, Image.SCALE_SMOOTH);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("File " + FileLoc + " not Found");
