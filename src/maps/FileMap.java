@@ -74,7 +74,7 @@ public class FileMap implements Map {
 
 	@Override
 	public byte getStateAt(int x, int y) {
-		return getStateArr()[x][y];
+		return getStateArr()[y][x];
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class FileMap implements Map {
 	@Override
 	public byte getDirAt(int x, int y) {
 		// TODO Auto-generated method stub
-		return getDirArr()[x][y];
+		return getDirArr()[y][x];
 	}
 
 	@Override
