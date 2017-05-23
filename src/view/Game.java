@@ -68,8 +68,7 @@ public class Game extends JPanel implements ActionListener {
 		g.setColor(new Color(95, 123, 36));
 		g.fillRect(0, interval * 10, interval * 15, interval);
 		g.setColor(Color.BLACK);
-		g.setFont(Main.font);
-		g.setFont(new Font("quicksand", Font.PLAIN, interval/2));
+		g.setFont(new Font("quicksand", Font.PLAIN, interval / 2));
 		g.drawString("Balance: " + balance, interval / 2, (int) (interval * (10.75)));
 		g.drawString("Score: " + score, interval * 13 / 2, (int) (interval * (10.75)));
 		g.drawString("Lives: " + lives, interval * 12, (int) (interval * (10.75)));
