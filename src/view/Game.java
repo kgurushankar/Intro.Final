@@ -45,7 +45,7 @@ public class Game extends JPanel implements ActionListener {
 			path[i] = path[i].getScaledInstance(interval, interval, Image.SCALE_SMOOTH);
 		}
 		lives = 50;
-		balance = 350;
+		balance = 450;
 		tick = new Timer(50, this);
 		tick.start();
 		enemy.add(new OrcSword(level.getMap().getStartingLocation()[0] * interval,
