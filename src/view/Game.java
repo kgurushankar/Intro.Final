@@ -36,14 +36,16 @@ public class Game extends JPanel implements ActionListener {
 		root += "/assets/Path/";
 		path[0] = loadImageFromFile(root + "0.0.jpg");
 		path[0] = path[0].getScaledInstance(interval, interval, Image.SCALE_SMOOTH);
-
 		for (int i = 1; i < path.length; i++) {
 			path[i] = loadImageFromFile(root + i + ".jpg");
 			path[i] = path[i].getScaledInstance(interval, interval, Image.SCALE_SMOOTH);
 		}
+		lives = 50;
+		balance = 350;
 		enemy.add(new OrcAxe(0, 0, this));
 		tick = new Timer(50, this);
 		tick.start();
+		enemy.add(new OrcAxe(level.getMap().getStartingLocation()[0], level.getMap().getStartingLocation()[1]));
 	}
 
 	public void paintComponent(Graphics g) {

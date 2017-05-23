@@ -1,5 +1,6 @@
 package field;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -13,14 +14,14 @@ public abstract class Item {
 	protected int y;
 	/**
 	 * Max speed is 10 <br />
-	 * Hit speed for towers and
+	 * Hit speed for towers and movement for enemies
 	 */
 	protected byte speed;
 	protected byte value; // price/payout
 	protected Image img;
-	protected boolean needsNewGoal = false;
-	protected Game game;
 
+	protected boolean needsNewGoal = true;
+	protected Game game;
 	public Item(int x, int y, byte speed, byte value, Game game) {
 		this.x = x;
 		this.y = y;
@@ -41,6 +42,7 @@ public abstract class Item {
 
 	public void draw(Graphics g) {
 		g.drawImage(this.getImage(), x, y, null);
+		g.setColor(Color.black);
 	}
 
 	public byte[] getLoc() {
