@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -58,6 +60,17 @@ public class Game extends JPanel implements ActionListener {
 			}
 		}
 		
+
+		// Bottom Scores
+		g.setColor(new Color(95, 123, 36));
+		g.fillRect(0, interval * 10, interval * 15, interval);
+		g.setColor(Color.BLACK);
+		g.setFont(Main.font);
+		g.setFont(new Font("quicksand", Font.PLAIN, interval/2));
+		g.drawString("Balance: " + balance, interval / 2, (int) (interval * (10.75)));
+		g.drawString("Score: " + score, interval * 13 / 2, (int) (interval * (10.75)));
+		g.drawString("Lives: " + lives, interval * 12, (int) (interval * (10.75)));
+
 		for (int i = 0; i < tower.size(); i++) {
 			// tower.get(i).draw(g);
 		}
