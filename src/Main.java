@@ -1,8 +1,12 @@
 
-
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -25,6 +29,17 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	public Main() {
 		super("Tower Defense");
+		try {
+			Font temp = Font.createFont(Font.TRUETYPE_FONT, new File("assets/Fonts/Quicksand-Light.ttf"));
+			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(temp);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		addKeyListener(this);
 		setFocusable(true);
 		requestFocusInWindow();
