@@ -1,3 +1,5 @@
+
+
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.*;
@@ -32,8 +34,10 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 		setBounds(100, 100, 800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setUndecorated(true);
-		setVisible(true);
+		if (fs) {
+			setUndecorated(true);
+			setVisible(true);
+		}
 		title = new TitleScreen();
 		title.setBackground(Color.white);
 		add(title);
@@ -107,10 +111,9 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_F) {
-			setExtendedState(JFrame.MAXIMIZED_BOTH);
-			setUndecorated(true);
-		} else if (view == CurrentView.Credits) {
+		System.out.println("Key Hit!");
+		System.out.println(e.getKeyChar());
+		if (view == CurrentView.Credits) {
 
 		} else if (view == CurrentView.Game) {
 			if (e.getKeyCode() == KeyEvent.VK_P) {
@@ -136,9 +139,26 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	}
 
+	private Rectangle old = new Rectangle(100, 100, 800, 600);
+	private boolean fs = true;
+
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getExtendedKeyCode() == KeyEvent.VK_F11) {
+			setVisible(false);
+			dispose();
+			if (!fs) {
+				old = this.getBounds();
+				setExtendedState(JFrame.MAXIMIZED_BOTH);
+				setUndecorated(true);
+				fs = true;
+			} else {
+				this.setBounds(old);
+				setUndecorated(false);
+				fs = false;
+			}
+			setVisible(true);
+		}
 
 	}
 
