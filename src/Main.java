@@ -1,53 +1,44 @@
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 import javax.swing.JFrame;
 
-import view.Game;
-import view.TitleScreen;
+import view.*;
 
-public class Main extends JFrame implements ComponentListener, KeyListener, MouseListener {
-	
+public class Main extends JFrame implements /* ComponentListener, */ KeyListener, MouseListener {
+
 	private static final long serialVersionUID = 1L;
-	Game game;
-	TitleScreen title;
-	boolean gameRunning;
-	boolean paused;
+	private Game game;
+	private TitleScreen title;
+	private Credits credits = new Credits();
+	private boolean gameRunning;
+	private boolean paused;
+
+	enum CurrentView {
+		Game, Title, Credits
+	}
+
+	CurrentView view = CurrentView.Title;
 
 	public Main() {
 		super("Tower Defense");
-		addComponentListener(this);
 		addKeyListener(this);
+		setFocusable(true);
+		requestFocusInWindow();
 		addMouseListener(this);
 		setFocusable(true);
 		requestFocusInWindow();
 		setBounds(100, 100, 800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(true);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setUndecorated(true);
 		setVisible(true);
 		title = new TitleScreen();
 		title.setBackground(Color.white);
 		add(title);
 		gameRunning = false;
 		revalidate();
-	}
-
-	@Override
-	public void componentResized(ComponentEvent arg0) {
-		int W = 4;
-		int H = 3;
-		Rectangle b = arg0.getComponent().getBounds();
-		if (b.getWidth() * H >= b.getHeight() * W) {
-			arg0.getComponent().setBounds(b.x, b.y, b.height * W / H, b.height);
-		} else {
-			arg0.getComponent().setBounds(b.x, b.y, b.width, b.width * H / W);
-		}
 
 	}
 
@@ -56,7 +47,6 @@ public class Main extends JFrame implements ComponentListener, KeyListener, Mous
 		game = new Game();
 		game.setBackground(Color.WHITE);
 		add(game);
-		gameRunning = true;
 		revalidate();
 	}
 
@@ -65,42 +55,23 @@ public class Main extends JFrame implements ComponentListener, KeyListener, Mous
 		title = new TitleScreen();
 		title.setBackground(Color.white);
 		add(title);
-		gameRunning = false;
 		revalidate();
 
 	}
 
 	public void clearScreen() {
-		if (!gameRunning) {
-			remove(title);
-			title = null;
-		} else {
+		if (view == CurrentView.Credits) {
+			remove(credits);
+		} else if (view == CurrentView.Game) {
 			remove(game);
-			game = null;
+		} else if (view == CurrentView.Title) {
+			remove(title);
 		}
 	}
 
 	public static void main(String[] args) {
 		Main m = new Main();
-		m.startGame();
-		
-	}
-
-	@Override
-	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void componentHidden(ComponentEvent e) {
-		game.pause();
+		// m.startGame();
 
 	}
 
@@ -136,12 +107,24 @@ public class Main extends JFrame implements ComponentListener, KeyListener, Mous
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_P) {
-			System.out.println("P");
-			if (game.isPaused()) {
-				game.resume();
-			} else {
-				game.pause();
+		if (e.getKeyCode() == KeyEvent.VK_F) {
+			setExtendedState(JFrame.MAXIMIZED_BOTH);
+			setUndecorated(true);
+		} else if (view == CurrentView.Credits) {
+
+		} else if (view == CurrentView.Game) {
+			if (e.getKeyCode() == KeyEvent.VK_P) {
+				System.out.println("P");
+				if (game.isPaused()) {
+					game.resume();
+				} else {
+					game.pause();
+				}
+			}
+		} else if (view == CurrentView.Title) {
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				System.out.println("Begin Game");
+				this.startGame();
 			}
 		}
 
@@ -159,4 +142,27 @@ public class Main extends JFrame implements ComponentListener, KeyListener, Mous
 
 	}
 
+	/* All component Listener Code is below */
+	/*
+	 * 
+	 * @Override public void componentResized( ComponentEvent arg0) { if
+	 * (this.getExtendedState() != JFrame.MAXIMIZED_BOTH) { int W = 16; int H =
+	 * 9; Rectangle b = arg0.getComponent().getBounds (); if (b.getWidth() * H
+	 * >= b.getHeight() * W) { arg0.getComponent().setBounds (b.x, b.y, b.height
+	 * * W / H, b.height); } else { arg0.getComponent().setBounds (b.x, b.y,
+	 * b.width, b.width * H / W); } } }
+	 * 
+	 * @Override public void componentMoved(ComponentEvent e) {
+	 * 
+	 * }
+	 * 
+	 * @Override public void componentShown(ComponentEvent e) {
+	 * 
+	 * }
+	 * 
+	 * @Override public void componentHidden( ComponentEvent e) { game.pause();
+	 * System.out.println("PAUSE");
+	 * 
+	 * }
+	 */
 }
