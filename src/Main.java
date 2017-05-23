@@ -90,7 +90,6 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	public static void main(String[] args) {
 		Main m = new Main();
-		// m.startGame();
 
 	}
 
@@ -131,7 +130,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 		if (view == CurrentView.Credits) {
 
 		} else if (view == CurrentView.Game) {
-			if (e.getKeyCode() == KeyEvent.VK_P) {
+			if (e.getKeyChar() == 'p') {
 				System.out.println("P");
 				if (game.isPaused()) {
 					game.resume();
@@ -140,8 +139,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 				}
 			}
 		} else if (view == CurrentView.Title) {
-			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				System.out.println("Begin Game");
+			if (e.getKeyChar() == ' ') {
 				this.startGame();
 			}
 		}
