@@ -23,13 +23,15 @@ public class Game extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1;
 	public static final int interval = 64;
 
-	private static Level level;
+	private Level level;
 	private Image[] path = new Image[16];
 	private boolean running = false;
 	private ArrayList<Tower> tower = new ArrayList<Tower>();
 	private ArrayList<Enemy> enemy = new ArrayList<Enemy>();
 	private Timer tick;
-
+	private int balance;
+	private byte lives;
+	private int score;
 
 	public Game() {
 		level = new Level1();
@@ -44,22 +46,23 @@ public class Game extends JPanel implements ActionListener {
 		}
 		lives = 50;
 		balance = 350;
-		enemy.add(new OrcAxe(0, 0, this));
 		tick = new Timer(50, this);
 		tick.start();
-		enemy.add(new OrcAxe(level.getMap().getStartingLocation()[0], level.getMap().getStartingLocation()[1]));
+		enemy.add(new OrcSword(level.getMap().getStartingLocation()[0] * interval,
+				level.getMap().getStartingLocation()[1] * interval, this));
 	}
 
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		((Graphics2D) g).scale(getWidth() / (interval * (15f+2f)), getHeight() / (interval * 10f));
 
+		super.paintComponent(g);
+		((Graphics2D) g).scale(getWidth() / (interval * (15f + 2.5f)), getHeight() / (interval * (10f + 1)));
+
+		// path
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 15; j++) {
 				g.drawImage(path[level.getMap().getStateAt(i, j)], j * interval, i * interval, this);
 			}
 		}
-		
 
 		// Bottom Scores
 		g.setColor(new Color(95, 123, 36));
@@ -71,8 +74,9 @@ public class Game extends JPanel implements ActionListener {
 		g.drawString("Score: " + score, interval * 13 / 2, (int) (interval * (10.75)));
 		g.drawString("Lives: " + lives, interval * 12, (int) (interval * (10.75)));
 
+		// Draw enemies/towers
 		for (int i = 0; i < tower.size(); i++) {
-			// tower.get(i).draw(g);
+			tower.get(i).draw(g);
 		}
 		for (int i = 0; i < enemy.size(); i++) {
 			enemy.get(i).draw(g);
@@ -116,35 +120,16 @@ public class Game extends JPanel implements ActionListener {
 				this.balance += e.getValue();
 				enemy.remove(i);
 			} else {
-				if (e.needsNewDir()) {
-					byte[] loc = e.getLoc();
-					byte dir = this.level.getMap().getDirAt(loc[0], loc[1]);
-					if (dir == 1) { // up
-						e.setTarget(new byte[] { loc[0], (byte) (loc[1] + 1) });
-					} else if (dir == 2) {// left
-						e.setTarget(new byte[] { (byte) (loc[0] + 1), loc[1] });
-					} else if (dir == 3) {// down
-						e.setTarget(new byte[] { loc[0], (byte) (loc[1] - 1) });
-					} else if (dir == 4) {// right
-						e.setTarget(new byte[] { (byte) (loc[0] - 1), loc[1] });
-					} else if (dir == 5) {// end
-						enemy.remove(i);
-						this.lives--;
-					}
-
-				}
-				e.followPath();
 			}
+			e.followPath();
 		}
-
-		// Tower code
 	}
 
 	public boolean isPaused() {
 		return this.running;
 	}
 
-	public static Level getLevel() {
+	public Level getLevel() {
 		return level;
 	}
 
@@ -157,6 +142,9 @@ public class Game extends JPanel implements ActionListener {
 	}
 
 	public void balance(byte value) {
+		if (value > 0) {
+			score += value;
+		}
 		this.balance += value;
 	}
 }
