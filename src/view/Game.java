@@ -25,7 +25,7 @@ public class Game extends JPanel implements ActionListener {
 
 	private Level level;
 	private Image[] path = new Image[16];
-	private boolean running = false;
+	private boolean running = true;
 	private ArrayList<Tower> tower = new ArrayList<Tower>();
 	private ArrayList<Enemy> enemy = new ArrayList<Enemy>();
 	private Timer tick;
@@ -81,6 +81,12 @@ public class Game extends JPanel implements ActionListener {
 		Image t3 = loadImageFromFile("assets/Tower/Rabbit.png").getScaledInstance(interval * 2, interval * 2,
 				Image.SCALE_SMOOTH);
 
+		// If paused
+		if (!this.running) {
+			g.setFont(new Font("quicksand", Font.PLAIN, Game.interval * 3));
+			g.setColor(Color.BLACK);
+			g.drawString("PAUSED", 200, 450);
+		}
 		g.drawImage(t1, (int) (interval * 15.25), (int) (interval * .25), null);
 		g.drawImage(t2, (int) (interval * 15.25), (int) (interval * 2.5), null);
 		g.drawImage(t3, (int) (interval * 15.25), (int) (interval * 4.75), null);
@@ -126,13 +132,13 @@ public class Game extends JPanel implements ActionListener {
 		// Enemy code
 		for (int i = 0; i < enemy.size(); i++) {
 			Enemy e = enemy.get(i);
-			if (e.isDead()) {
-				this.balance += e.getValue();
-				enemy.remove(i);
-			} else {
-			}
-			e.followPath();
+			e.run();
 		}
+		for (int i = 0; i < tower.size(); i++) {
+			Tower t = tower.get(i);
+			t.run();
+		}
+		repaint();
 	}
 
 	public boolean isPaused() {
@@ -151,7 +157,7 @@ public class Game extends JPanel implements ActionListener {
 		lives--;
 	}
 
-	public void balance(byte value) {
+	public void balance(int value) {
 		if (value > 0) {
 			score += value;
 		}
@@ -164,6 +170,14 @@ public class Game extends JPanel implements ActionListener {
 
 	public void placeTower(Tower t) {
 		System.out.println("recieved " + t.getClass());
+		for (int i = 0; i < tower.size(); i++) {
+			if (tower.get(i).getX() == t.getX() && tower.get(i).getY() == t.getY()) {
+				return;
+			}
+		}
+		if (this.level.getMap().getStateAt(t.getX(), t.getY()) != 0) {
+			return;
+		}
 		if (balance >= t.getValue()) {
 			tower.add(t);
 			balance -= t.getValue();
