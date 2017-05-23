@@ -37,64 +37,52 @@ public abstract class Enemy extends Item {
 	}
 
 	public void followPath() {
-		// if (getLoc() == target) {
-
-		int dx = 0;
-		int dy = 0;
-		byte[] loc = this.getLoc();
-		byte dir = game.getLevel().getMap().getDirAt(loc[0], loc[1]);
-		if (dir == 1) { // up
-			this.target[0] = loc[0];
-			this.target[1] = (byte) (loc[1] + 1);
-			System.out.println("UP");
-			dy = 1;
-		} else if (dir == 2) {// left
-			this.target[0] = (byte) (loc[0] + 1);
-			this.target[1] = loc[1];
-			System.out.println("LEFT");
-			dx = 1;
-		} else if (dir == 3) {// down
-			this.target[0] = loc[0];
-			this.target[1] = (byte) (loc[1] - 1);
-			System.out.println("DOWN");
-			dy = -1;
-		} else if (dir == 4) {// right
-			this.target[0] = (byte) (loc[0] - 1);
-			this.target[1] = loc[1];
-			System.out.println("UP");
-
-			dx = -1;
-		} else if (dir == 5) {// end
-			game.removeEnemy(this);
-			game.loseLife();
+		if (getLoc() == target) {
+			byte[] loc = this.getLoc();
+			byte dir = game.getLevel().getMap().getDirAt(loc[0], loc[1]);
+			if (dir == 1) { // up
+				this.target[0] = loc[0];
+				this.target[1] = (byte) (loc[1] + 1);
+			} else if (dir == 2) {// left
+				this.target[0] = (byte) (loc[0] + 1);
+				this.target[1] = loc[1];
+			} else if (dir == 3) {// down
+				this.target[0] = loc[0];
+				this.target[1] = (byte) (loc[1] - 1);
+			} else if (dir == 4) {// right
+				this.target[0] = (byte) (loc[0] - 1);
+				this.target[1] = loc[1];
+			} else if (dir == 5) {// end
+				game.removeEnemy(this);
+				game.loseLife();
+			}
 		}
-		System.out.println(this.x + " " + this.y);
-		// }
 
-		/*
-		 * if (x < (target[0] * Game.interval))
-		 * 
-		 * { // Right dx = Game.interval / 20 * speed; } else { // Left dx =
-		 * Game.interval / 20 * -speed; }
-		 * 
-		 * if (y > (target[1] * Game.interval)) { // Up dy = Game.interval / 20
-		 * * speed; } else { // Down dy = Game.interval / 20 * -speed;
-		 * 
-		 * }
-		 */
+		int dx;
+		int dy;
+		if (x < (target[0] * Game.interval)) { // Right
+			dx = Game.interval / 20 * speed;
+		} else { // Left
+			dx = Game.interval / 20 * -speed;
+		}
 
+		if (y > (target[1] * Game.interval)) { // Up
+			dy = Game.interval / 20 * speed;
+		} else { // Down
+			dy = Game.interval / 20 * -speed;
+
+		}
 		move(dx, dy);
 	}
 
 	private void move(int x, int y) {
-		this.x += x;
-		this.y += y;
+		this.x = x;
+		this.y = y;
 	}
 
 	public void run() {
 		if (this.health <= 0) {
 			alive = false;
-			game.removeEnemy(this);
 		} else {
 			followPath();
 		}

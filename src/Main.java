@@ -38,14 +38,15 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	public Main() {
 		super("Tower Defense");
-
 		try {
 			Font temp = Font.createFont(Font.TRUETYPE_FONT, new File("assets/Fonts/Quicksand-Light.ttf"));
 			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(temp);
 		} catch (FontFormatException e) {
-
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
-
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		addKeyListener(this);
@@ -143,21 +144,25 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
@@ -167,17 +172,11 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 		} else if (view == CurrentView.Game) {
 			if (e.getKeyChar() == 'p') {
-				System.out.println(!game.isPaused());
-				if (!game.isPaused()) {
+				if (game.isPaused()) {
 					game.resume();
-					System.out.println("RESUME");
 				} else {
 					game.pause();
-					System.out.println("PAUSE");
 				}
-
-				game.repaint();
-				this.repaint();
 			}
 		} else if (view == CurrentView.Title) {
 			if (e.getKeyChar() == ' ') {

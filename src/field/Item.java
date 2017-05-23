@@ -41,7 +41,7 @@ public abstract class Item {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(this.getImage(), x * Game.interval, y * Game.interval, null);
+		g.drawImage(this.getImage(), x, y, null);
 		g.setColor(Color.black);
 	}
 
