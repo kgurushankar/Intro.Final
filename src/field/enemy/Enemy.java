@@ -16,7 +16,6 @@ public abstract class Enemy extends Item {
 	 * Stage in the animation the enemy is at <br />
 	 * Should be 0 to 6
 	 */
-	private byte stage = 0;
 	private boolean alive = true;
 
 	public Enemy(int x, int y, int health, byte speed, byte value, Game game) {
@@ -81,46 +80,23 @@ public abstract class Enemy extends Item {
 		this.y = y;
 	}
 
-	public void die() {
-
-		this.img = getDieImg()[stage];
-		game.balance(this.value);
-	}
-
-	protected abstract Image[] getDieImg();
-
-	protected void walk() {
-		this.img = getWalkImg()[stage];
-	}
-
-	protected abstract Image[] getWalkImg();
-
 	public void run() {
 		if (this.health <= 0) {
 			if (alive) {
 				alive = !alive;
-				stage = 0;
 			}
-			die();
 		} else {
 			followPath();
-			walk();
 		}
-		stage++;
 	}
 
 	public boolean isDead() {
-		return !alive && stage >= 6;
+		return !alive;
 	}
 
 	protected Image loadImageFromFile(String FileLoc) {
 		return super.loadImageFromFile("Orc/" + FileLoc);
 
-	}
-
-	/* Remove this to re enable animation */
-	public Image getImage() {
-		return getWalkImg()[0];
 	}
 
 }
