@@ -18,6 +18,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 	private Game game;
 	private TitleScreen title;
 	private Credits credits = new Credits();
+	private Loading l = new Loading();
 	private boolean gameRunning;
 	private boolean paused;
 
@@ -39,7 +40,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		addKeyListener(this);
 		setFocusable(true);
 		requestFocusInWindow();
@@ -65,6 +66,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 		clearScreen();
 		game = new Game();
 		game.setBackground(Color.WHITE);
+		remove(l);
 		add(game);
 		revalidate();
 	}
@@ -73,6 +75,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 		clearScreen();
 		title = new TitleScreen();
 		title.setBackground(Color.white);
+		remove(l);
 		add(title);
 		revalidate();
 
@@ -86,6 +89,8 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 		} else if (view == CurrentView.Title) {
 			remove(title);
 		}
+		add(l);
+		revalidate();
 	}
 
 	public static void main(String[] args) {
