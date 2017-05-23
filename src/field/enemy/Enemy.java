@@ -40,7 +40,7 @@ public abstract class Enemy extends Item {
 	public void followPath() {
 		if (getLoc() == target) {
 			byte[] loc = this.getLoc();
-			byte dir = Game.getLevel().getMap().getDirAt(loc[0], loc[1]);
+			byte dir = game.getLevel().getMap().getDirAt(loc[0], loc[1]);
 			if (dir == 1) { // up
 				this.target[0] = loc[0];
 				this.target[1] = (byte) (loc[1] + 1);
