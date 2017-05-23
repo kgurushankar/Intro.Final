@@ -73,6 +73,8 @@ public class Game extends JPanel implements ActionListener {
 		g.drawString("Score: " + score, interval * 13 / 2, (int) (interval * (10.75)));
 		g.drawString("Lives: " + lives, interval * 12, (int) (interval * (10.75)));
 
+		// Right Area
+
 		// Draw enemies/towers
 		for (int i = 0; i < tower.size(); i++) {
 			tower.get(i).draw(g);
@@ -145,5 +147,9 @@ public class Game extends JPanel implements ActionListener {
 			score += value;
 		}
 		this.balance += value;
+	}
+
+	public ArrayList<Enemy> getEnemies() {
+		return enemy;
 	}
 }
