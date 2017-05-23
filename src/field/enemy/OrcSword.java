@@ -5,33 +5,16 @@ import java.awt.Image;
 import view.Game;
 
 public class OrcSword extends Enemy {
-	private Image[] die;
-	private Image[] walk;
+	private Image img;
 
 	public OrcSword(int x, int y, Game g) {
 		super(x, y, 150, (byte) 7, (byte) 15, g);
-		String fileloc = "Sword/DIE/DIE_00";
-		die = new Image[7];
-		for (int i = 0; i < 7; i++) {
-			die[i] = super.loadImageFromFile(fileloc + i + ".png");
-		}
-		fileloc = "Sword/WALK/WALK_00";
-		walk = new Image[7];
-		for (int i = 0; i < 7; i++) {
-			walk[i] = super.loadImageFromFile(fileloc + i + ".png");
-		}
+		String fileloc = "Sword/WALK/WALK_001.png";
+		img = super.loadImageFromFile(fileloc);
 	}
 
-	@Override
-	protected Image[] getDieImg() {
-
-		return die;
-	}
-
-	@Override
-	protected Image[] getWalkImg() {
-
-		return walk;
+	protected Image getImage() {
+		return img;
 	}
 
 }
