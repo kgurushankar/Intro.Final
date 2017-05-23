@@ -1,7 +1,7 @@
 # Tower Defense 
 ## Authors &mdash;  [Keshav Gurushankar](https://github.com/kgurushankar), [Jeremy Honma](https://github.com/jhonma7), [Jatin Alla](https://github.com/Coldstone07) on 5/17
 ## Introduction 
-We created a stategy tower defense game which involves a map, moving enemies, and towers. The player will be able to but new towers by using a currency system. Defeating enemies adds currency to the users bank, allowing them to buy more towers and progress through the game. There are several classes of towers that do different types of attacks and have different effects on enemies. 
+We created a strategy tower defense game which involves a map, moving enemies, and towers. The player will be able to but new towers by using a currency system. Defeating enemies adds currency to the users bank, allowing them to buy more towers and progress through the game. There are several classes of towers that do different types of attacks and have different effects on enemies. 
 ### The target audience
 Primarily children and people who enjoy playing games on the computer
 ### Features
