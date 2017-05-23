@@ -37,47 +37,41 @@ public abstract class Enemy extends Item {
 	}
 
 	public void followPath() {
-		if (getLoc() == target) {
-			byte[] loc = this.getLoc();
+		int dx = 0;
+		int dy = 0;
+		byte[] loc = this.getLoc();
+		System.out.println(loc[0] + "  " + loc[1]);
+		if (loc[0] >= 0 && loc[0] <= 15 && loc[1] >= 0 && loc[1] <= 10) {
 			byte dir = game.getLevel().getMap().getDirAt(loc[0], loc[1]);
 			if (dir == 1) { // up
-				this.target[0] = loc[0];
-				this.target[1] = (byte) (loc[1] + 1);
+				dy = (int) (Game.interval * speed / 20.0);
 			} else if (dir == 2) {// left
-				this.target[0] = (byte) (loc[0] + 1);
-				this.target[1] = loc[1];
+				dx = (int) (Game.interval * speed / 20.0);
 			} else if (dir == 3) {// down
-				this.target[0] = loc[0];
-				this.target[1] = (byte) (loc[1] - 1);
+				dy = (int) (Game.interval * speed / -20.0);
 			} else if (dir == 4) {// right
-				this.target[0] = (byte) (loc[0] - 1);
-				this.target[1] = loc[1];
+				dx = (int) (Game.interval * speed / -20.0);
 			} else if (dir == 5) {// end
 				game.removeEnemy(this);
 				game.loseLife();
 			}
-		}
-
-		int dx;
-		int dy;
-		if (x < (target[0] * Game.interval)) { // Right
-			dx = Game.interval / 20 * speed;
-		} else { // Left
-			dx = Game.interval / 20 * -speed;
-		}
-
-		if (y > (target[1] * Game.interval)) { // Up
-			dy = Game.interval / 20 * speed;
-		} else { // Down
-			dy = Game.interval / 20 * -speed;
+		} else {
+			if (loc[0] < 0) {
+				this.x = Game.interval / 2;
+			} else if (loc[0] > 15) {
+				this.x = Game.interval * 29 / 2;
+			} else if (loc[1] < 0) {
+				this.y = Game.interval / 2;
+			} else if (loc[1] > 10) {
+				this.y = Game.interval * 19 / 2;
 
 		}
 		move(dx, dy);
 	}
 
 	private void move(int x, int y) {
-		this.x = x;
-		this.y = y;
+		this.x += x;
+		this.y += y;
 	}
 
 	public void run() {
