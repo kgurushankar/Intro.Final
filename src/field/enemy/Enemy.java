@@ -97,14 +97,9 @@ public abstract class Enemy extends Item {
 
 	public void run() {
 		if (this.health <= 0) {
-			if (alive) {
-				alive = !alive;
-				stage = 0;
-			}
-			die();
+			alive = false;
 		} else {
 			followPath();
-			walk();
 		}
 		stage++;
 	}

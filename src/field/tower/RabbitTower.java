@@ -5,27 +5,15 @@ import java.awt.Image;
 import view.Game;
 
 public class RabbitTower extends Tower {
+	private Image img = super.loadImageFromFile("Rabbit.png");
 
 	public RabbitTower(byte x, byte y, Game g) {
-		super(x, y, (byte) 150, (byte) 1, (byte) 200, g);
+		super(x, y, 150, (byte) 1,  200, g);
 	}
 
 	@Override
-	protected Image getImage() {
-		return super.loadImageFromFile("Rabbit.png");
+	public Image getImage() {
+		return img;
 
 	}
-
-	@Override
-	protected void attack() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

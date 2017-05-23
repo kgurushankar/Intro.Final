@@ -17,12 +17,12 @@ public abstract class Item {
 	 * Hit speed for towers and movement for enemies
 	 */
 	protected byte speed;
-	protected byte value; // price/payout
+	protected int value; // price/payout
 	protected Image img;
 
 	protected Game game;
 
-	public Item(int x, int y, byte speed, byte value, Game game) {
+	public Item(int x, int y, byte speed, int value, Game game) {
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
@@ -55,7 +55,7 @@ public abstract class Item {
 
 	public abstract void run();
 
-	public byte getValue() {
+	public int getValue() {
 		return value;
 	}
 

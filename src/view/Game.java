@@ -74,7 +74,16 @@ public class Game extends JPanel implements ActionListener {
 		g.drawString("Lives: " + lives, interval * 12, (int) (interval * (10.75)));
 
 		// Right Area
+		Image t1 = loadImageFromFile("assets/Tower/Bunny.png").getScaledInstance(interval * 2, interval * 2,
+				Image.SCALE_SMOOTH);
+		Image t2 = loadImageFromFile("assets/Tower/Cat.png").getScaledInstance(interval * 2, interval * 2,
+				Image.SCALE_SMOOTH);
+		Image t3 = loadImageFromFile("assets/Tower/Rabbit.png").getScaledInstance(interval * 2, interval * 2,
+				Image.SCALE_SMOOTH);
 
+		g.drawImage(t1, (int) (interval * 15.25), (int) (interval * .25), null);
+		g.drawImage(t2, (int) (interval * 15.25), (int) (interval * 2.5), null);
+		g.drawImage(t3, (int) (interval * 15.25), (int) (interval * 4.75), null);
 		// Draw enemies/towers
 		for (int i = 0; i < tower.size(); i++) {
 			tower.get(i).draw(g);
@@ -151,5 +160,15 @@ public class Game extends JPanel implements ActionListener {
 
 	public ArrayList<Enemy> getEnemies() {
 		return enemy;
+	}
+
+	public void placeTower(Tower t) {
+		System.out.println("recieved " + t.getClass());
+		if (balance >= t.getValue()) {
+			tower.add(t);
+			balance -= t.getValue();
+			System.out.println("removed" + t.getValue() + " from bal");
+		}
+		repaint();
 	}
 }

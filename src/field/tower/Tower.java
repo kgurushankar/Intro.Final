@@ -12,9 +12,9 @@ public abstract class Tower extends Item {
 
 	protected byte x;
 	protected byte y;
-	protected byte power;
+	protected int power;
 
-	public Tower(byte x, byte y, byte power, byte speed, byte value, Game game) {
+	public Tower(byte x, byte y, int i, byte speed, int value, Game game) {
 		super(x, y, speed, value, game);
 		this.x = x;
 		this.y = y;
@@ -54,7 +54,11 @@ public abstract class Tower extends Item {
 				out = temp;
 			}
 		}
-		return out;
+		if (dist <= 3.0) {
+			return out;
+		} else {
+			return null;
+		}
 	}
 
 	private double findDist(int x1, int y1, int x2, int y2) {
@@ -64,5 +68,14 @@ public abstract class Tower extends Item {
 	protected Image loadImageFromFile(String FileLoc) {
 		return super.loadImageFromFile("Tower/" + FileLoc);
 
+	}
+
+	private int stage = 0;
+
+	public void run() {
+		stage++;
+		if (stage % (20 / speed) == 0) {
+			attack();
+		}
 	}
 }
