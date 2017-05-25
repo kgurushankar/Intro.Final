@@ -46,13 +46,13 @@ public abstract class Enemy extends Item {
 		int dy = 0;
 		int dir = game.getLevel().getMap().getDirAt(this.x / Game.interval, this.y / Game.interval);
 		if (dir == 1) {
-			this.y += this.speed / 20.0 * Game.interval * -1;
+			this.y += this.speed / 40.0 * Game.interval * -1;
 		} else if (dir == 2) {
-			this.x += this.speed / 20.0 * Game.interval;
+			this.x += this.speed / 40.0 * Game.interval;
 		} else if (dir == 3) {
-			this.y += this.speed / 20.0 * Game.interval;
+			this.y += this.speed / 40.0 * Game.interval;
 		} else if (dir == 4) {
-			this.x += this.speed / 20.0 * Game.interval * -1;
+			this.x += this.speed / 40.0 * Game.interval * -1;
 		} else if (dir == 5) {
 			game.loseLife();
 			game.removeEnemy(this);
