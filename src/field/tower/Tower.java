@@ -72,7 +72,7 @@ public abstract class Tower extends Item {
 		stage++;
 		if (stage % (10 / speed) == 0) {
 			attack();
-			System.out.println("attack");
+			// System.out.println("attack");
 		}
 	}
 }
