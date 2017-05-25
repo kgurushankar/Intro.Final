@@ -18,12 +18,15 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import levels.*;
+import main.Main;
 
 public class Game extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1;
 	public static final int interval = 64;
 
 	private Level level;
+	private Main m;
+
 	private Image[] path = new Image[16];
 	private boolean running = false;
 	private ArrayList<Tower> tower = new ArrayList<Tower>();
@@ -32,8 +35,10 @@ public class Game extends JPanel implements ActionListener {
 	private int balance;
 	private byte lives;
 	private int score;
+	private boolean lose = false;
 
-	public Game() {
+	public Game(Main m) {
+		this.m = m;
 		level = new Level1();
 		String root = System.getProperty("user.dir");
 		root = root.replace('\\', '/');
@@ -123,6 +128,10 @@ public class Game extends JPanel implements ActionListener {
 	}
 
 	private void perTick() {
+		if (lives < 0) {
+			lose();
+			return;
+		}
 		// Enemy code
 		for (int i = 0; i < enemy.size(); i++) {
 			Enemy e = enemy.get(i);
@@ -170,5 +179,10 @@ public class Game extends JPanel implements ActionListener {
 			System.out.println("removed" + t.getValue() + " from bal");
 		}
 		repaint();
+	}
+
+	public void lose() {
+		tick.stop();
+		this.m.lose();
 	}
 }

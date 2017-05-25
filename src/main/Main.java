@@ -14,14 +14,8 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import field.tower.BunnyTower;
-import field.tower.CatTower;
-import field.tower.RabbitTower;
-import field.tower.Tower;
-import view.Credits;
-import view.Game;
-import view.Loading;
-import view.TitleScreen;
+import field.tower.*;
+import view.*;
 
 public class Main extends JFrame implements /* ComponentListener, */ KeyListener, MouseListener {
 
@@ -30,9 +24,10 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 	private TitleScreen title;
 	private Credits credits = new Credits();
 	private Loading l = new Loading();
+	private Lose lose;
 
 	enum CurrentView {
-		Game, Title, Credits
+		Game, Title, Credits, Lose
 	}
 
 	CurrentView view = CurrentView.Title;
@@ -72,11 +67,22 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	public void startGame() {
 		clearScreen();
-		game = new Game();
+		game = new Game(this);
 		game.setBackground(Color.WHITE);
 		remove(l);
 		view = CurrentView.Game;
 		add(game);
+		revalidate();
+	}
+
+	public void lose() {
+		clearScreen();
+		game = null;
+		lose = new Lose();
+		lose.setBackground(Color.WHITE);
+		remove(l);
+		view = CurrentView.Lose;
+		add(lose);
 		revalidate();
 	}
 
@@ -98,6 +104,8 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 			remove(game);
 		} else if (view == CurrentView.Title) {
 			remove(title);
+		} else if (view == CurrentView.Lose) {
+			remove(lose);
 		}
 		add(l);
 		revalidate();
@@ -182,6 +190,10 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 		} else if (view == CurrentView.Title) {
 			if (e.getKeyChar() == ' ') {
 				this.startGame();
+			}
+		} else if (view == CurrentView.Lose) {
+			if (e.getKeyChar() == ' ') {
+				this.titleScreen();
 			}
 		}
 
