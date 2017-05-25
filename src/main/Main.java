@@ -97,6 +97,17 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	}
 
+	private void credits() {
+		clearScreen();
+		credits = new Credits();
+		credits.setBackground(Color.white);
+		remove(l);
+		view = CurrentView.Credits;
+		add(credits);
+		revalidate();
+
+	}
+
 	public void clearScreen() {
 		if (view == CurrentView.Credits) {
 			remove(credits);
@@ -193,6 +204,8 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 		} else if (view == CurrentView.Lose) {
 			if (e.getKeyChar() == ' ') {
 				this.titleScreen();
+			} else if (e.getKeyChar() == 'c') {
+				this.credits();
 			}
 		}
 
