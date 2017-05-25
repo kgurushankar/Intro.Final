@@ -14,7 +14,7 @@ public class BunnyTower extends Tower {
 
 	@Override
 	public Image getImage() {
-		return img;
+		return img.getScaledInstance((int) (Game.interval * .9), (int) (Game.interval * .9), Image.SCALE_SMOOTH);
 	}
 
 }

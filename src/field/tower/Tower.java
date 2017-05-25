@@ -10,14 +10,10 @@ import view.Game;
 
 public abstract class Tower extends Item {
 
-	protected byte x;
-	protected byte y;
 	protected int power;
 
 	public Tower(byte x, byte y, int i, byte speed, int value, Game game) {
-		super(x, y, speed, value, game);
-		this.x = x;
-		this.y = y;
+		super(x * Game.interval, y * Game.interval, speed, value, game);
 		this.power = power;
 	}
 
@@ -27,13 +23,6 @@ public abstract class Tower extends Item {
 
 	public int getY() {
 		return y;
-	}
-
-	public void draw(Graphics g) {
-		g.drawImage(
-				getImage().getScaledInstance((int) (Game.interval * .9), (int) (Game.interval * .9),
-						Image.SCALE_SMOOTH),
-				Game.interval * x + (int) (Game.interval * .05), Game.interval * y + (int) (Game.interval * .05), null);
 	}
 
 	protected abstract Image getImage();
@@ -54,7 +43,7 @@ public abstract class Tower extends Item {
 				out = temp;
 			}
 		}
-		if (dist <= 3.0) {
+		if (dist <= 3.0 * Game.interval) {
 			return out;
 		} else {
 			return null;
@@ -74,8 +63,9 @@ public abstract class Tower extends Item {
 
 	public void run() {
 		stage++;
-		if (stage % (20 / speed) == 0) {
+		if (stage % (10 / speed) == 0) {
 			attack();
+			System.out.println("attack");
 		}
 	}
 }
