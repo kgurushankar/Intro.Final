@@ -32,6 +32,7 @@ public class Game extends JPanel implements ActionListener {
 	private ArrayList<Tower> tower = new ArrayList<Tower>();
 	private ArrayList<Enemy> enemy = new ArrayList<Enemy>();
 	private Timer tick;
+	private long time;
 	private int balance;
 	private byte lives;
 	private int score;
@@ -142,6 +143,21 @@ public class Game extends JPanel implements ActionListener {
 			}
 			e.followPath();
 		}
+		if ((int) (Math.random() * 20000 / time) == 0) {// timing to spawn
+														// chance
+			int x = (int) (Math.random() * 3);
+			if (x == 0) {
+				enemy.add(new OrcSword(level.getMap().getStartingLocation()[0] * interval,
+						level.getMap().getStartingLocation()[1] * interval, this));
+			} else if (x == 1) {
+				enemy.add(new OrcHammer(level.getMap().getStartingLocation()[0] * interval,
+						level.getMap().getStartingLocation()[1] * interval, this));
+			} else if (x == 2) {
+				enemy.add(new OrcAxe(level.getMap().getStartingLocation()[0] * interval,
+						level.getMap().getStartingLocation()[1] * interval, this));
+			}
+		}
+
 	}
 
 	public boolean isPaused() {
