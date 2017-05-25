@@ -189,6 +189,14 @@ public class Game extends JPanel implements ActionListener {
 
 	public void placeTower(Tower t) {
 		System.out.println("recieved " + t.getClass());
+		if (level.getMap().getStateAt(t.getX(), t.getY()) != 0) {
+			return;
+		}
+		for (int i = 0; i < tower.size(); i++) {
+			if (t.getX() == tower.get(i).getX() && t.getY() == tower.get(i).getY()) {
+				return;
+			}
+		}
 		if (balance >= t.getValue()) {
 			tower.add(t);
 			balance -= t.getValue();
