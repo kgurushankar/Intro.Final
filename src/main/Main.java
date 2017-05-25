@@ -1,3 +1,4 @@
+package main;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -211,6 +212,14 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 				fs = false;
 			}
 			setVisible(true);
+		} else if (view == CurrentView.Game) {
+			if (e.getExtendedKeyCode() == KeyEvent.VK_ESCAPE) {
+				if (game.isPaused()) {
+					game.resume();
+				} else {
+					game.pause();
+				}
+			}
 		}
 
 	}
