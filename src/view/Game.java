@@ -143,6 +143,11 @@ public class Game extends JPanel implements ActionListener {
 			}
 			e.followPath();
 		}
+		// Tower code
+		for (int i = 0; i < tower.size(); i++) {
+			Tower t = tower.get(i);
+			t.run();
+		}
 		if ((int) (Math.random() * 20000 / time) == 0) {// timing to spawn
 														// chance
 			int x = (int) (Math.random() * 3);
@@ -176,7 +181,7 @@ public class Game extends JPanel implements ActionListener {
 		lives--;
 	}
 
-	public void balance(byte value) {
+	public void balance(int value) {
 		if (value > 0) {
 			score += value;
 		}
@@ -189,7 +194,7 @@ public class Game extends JPanel implements ActionListener {
 
 	public void placeTower(Tower t) {
 		System.out.println("recieved " + t.getClass());
-		if (level.getMap().getStateAt(t.getX(), t.getY()) != 0) {
+		if (level.getMap().getStateAt(t.getX() / Game.interval, t.getY() / Game.interval) != 0) {
 			return;
 		}
 		for (int i = 0; i < tower.size(); i++) {
