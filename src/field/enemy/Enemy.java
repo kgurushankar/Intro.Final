@@ -23,11 +23,16 @@ public abstract class Enemy extends Item {
 		this.health = health;
 	}
 
-	public void loseHealth(double x) {
-		health = ((byte) (health - x));
+	public void loseHealth(int x) {
+		health += -x;
+		//death
+		if (health <= 0) {
+			game.removeEnemy(this);
+			game.balance(value);
+		}
 	}
 
-	public double getHealth() {
+	public int getHealth() {
 		return health;
 	}
 

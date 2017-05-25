@@ -12,7 +12,7 @@ public abstract class Tower extends Item {
 
 	protected int power;
 
-	public Tower(byte x, byte y, int i, byte speed, int value, Game game) {
+	public Tower(byte x, byte y, int power, byte speed, int value, Game game) {
 		super(x * Game.interval, y * Game.interval, speed, value, game);
 		this.power = power;
 	}
