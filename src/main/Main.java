@@ -113,7 +113,6 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 
 	public static void main(String[] args) {
 		Main m = new Main();
-
 	}
 
 	private byte towerChosen = 0;

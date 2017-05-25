@@ -40,7 +40,6 @@ public abstract class Enemy extends Item {
 		int dx = 0;
 		int dy = 0;
 		int dir = game.getLevel().getMap().getDirAt(this.x / Game.interval, this.y / Game.interval);
-		System.out.println(dir);
 		if (dir == 1) {
 			this.y += this.speed / 20.0 * Game.interval * -1;
 		} else if (dir == 2) {
@@ -53,8 +52,6 @@ public abstract class Enemy extends Item {
 			game.loseLife();
 			game.removeEnemy(this);
 		}
-
-		System.out.println(dx + "  " + dy);
 		move(dx, dy);
 	}
 
