@@ -29,11 +29,18 @@ public abstract class Tower extends Item {
 
 	protected void attack() {
 		Enemy e = findNearestTarget();
+		if (e == null) {
+			return;
+		}
 		e.loseHealth(power);
+		System.out.println("Attacked " + e.getClass() + " " + e.getHealth());
 	}
 
 	protected Enemy findNearestTarget() {
 		ArrayList<Enemy> enemies = game.getEnemies();
+		if (game.getEnemies().size() == 0) {
+			return null;
+		}
 		Enemy out = enemies.get(0);
 		double dist = findDist(x, y, out.getX(), out.getY());
 		for (int i = 1; i < enemies.size(); i++) {
