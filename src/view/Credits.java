@@ -19,10 +19,10 @@ public class Credits extends JPanel
 	    int h = getHeight();
 	   
 	    g.setColor(Color.RED);
-	    g.setFont(new Font("Serif", Font.BOLD, 60));
+	    g.setFont(new Font("quicksand", Font.BOLD, 60));
 	    g.drawString("Credits",110*w/300 , h/9);
 	    g.setColor(Color.DARK_GRAY);
-	    g.setFont(new Font("Serif", Font.BOLD, 27));
+	    g.setFont(new Font("quicksand", Font.BOLD, 27));
 	    g.drawString("By:Keshav Gurushankar, Jeremy Honma and Jatin Alla",w/9 , h/2);
 	   }
 	public static void main(String[] args)
