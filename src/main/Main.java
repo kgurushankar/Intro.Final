@@ -123,7 +123,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 	}
 
 	public static void main(String[] args) {
-		Main m = new Main();
+		new Main();
 	}
 
 	private byte towerChosen = 0;
@@ -131,7 +131,6 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (view == CurrentView.Game) {
-			System.out.println("game " + e.getX() * 1.0 / Game.interval + " " + e.getY() * 1.0 / Game.interval);
 			if (e.getX() >= Game.interval * 10.25 && e.getX() <= Game.interval * 12.25) {
 				if (e.getY() >= Game.interval * .25 && e.getY() <= Game.interval * 2.25) {
 					towerChosen = 1;
@@ -140,9 +139,7 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 				} else if (e.getY() >= Game.interval * 4.75 && e.getY() <= Game.interval * 6.75) {
 					towerChosen = 3;
 				}
-				System.out.println("select");
 			} else if (towerChosen != 0) {
-				System.out.println("placing");
 				if (e.getX() <= Game.interval * 15 && e.getY() <= Game.interval * 10) {
 					Tower t = null;
 					if (towerChosen == 1) {
@@ -153,7 +150,6 @@ public class Main extends JFrame implements /* ComponentListener, */ KeyListener
 						t = new RabbitTower((byte) (e.getX() / Game.interval), (byte) (e.getY() / Game.interval), game);
 					}
 					towerChosen = 0;
-					System.out.println("send" + t.getClass());
 					game.placeTower(t);
 				}
 			}

@@ -1,7 +1,7 @@
 package field.tower;
 
-import java.awt.Graphics;
 import java.awt.Image;
+
 import java.util.ArrayList;
 
 import field.Item;
@@ -33,7 +33,6 @@ public abstract class Tower extends Item {
 			return;
 		}
 		e.loseHealth(power);
-		System.out.println("Attacked " + e.getClass() + " " + e.getHealth());
 	}
 
 	protected Enemy findNearestTarget() {
@@ -72,7 +71,6 @@ public abstract class Tower extends Item {
 		stage++;
 		if (stage % (10 / speed) == 0) {
 			attack();
-			// System.out.println("attack");
 		}
 	}
 }

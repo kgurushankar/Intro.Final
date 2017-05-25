@@ -36,7 +36,6 @@ public class Game extends JPanel implements ActionListener {
 	private int balance;
 	private byte lives;
 	private int score;
-	private boolean lose = false;
 
 	public Game(Main m) {
 		this.m = m;
@@ -193,7 +192,6 @@ public class Game extends JPanel implements ActionListener {
 	}
 
 	public void placeTower(Tower t) {
-		System.out.println("recieved " + t.getClass());
 		if (level.getMap().getStateAt(t.getX() / Game.interval, t.getY() / Game.interval) != 0) {
 			return;
 		}
@@ -205,7 +203,6 @@ public class Game extends JPanel implements ActionListener {
 		if (balance >= t.getValue()) {
 			tower.add(t);
 			balance -= t.getValue();
-			System.out.println("removed" + t.getValue() + " from bal");
 		}
 		repaint();
 	}

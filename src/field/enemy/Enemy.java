@@ -7,12 +7,6 @@ import view.Game;
 public abstract class Enemy extends Item {
 	private int health;
 	/**
-	 * this says where this is going to go on the 15*10 grid <br />
-	 * format is (x,y)
-	 */
-	private byte[] target = { 0, 0 };
-
-	/**
 	 * Stage in the animation the enemy is at <br />
 	 * Should be 0 to 6
 	 */
