@@ -46,10 +46,8 @@ public class Game extends JPanel implements ActionListener {
 		}
 		lives = 50;
 		balance = 450;
-		tick = new Timer(50, this);
+		tick = new Timer(100, this);
 		tick.start();
-		enemy.add(new OrcSword(level.getMap().getStartingLocation()[0] * interval,
-				level.getMap().getStartingLocation()[1] * interval, this));
 	}
 
 	public void paintComponent(Graphics g) {
@@ -60,7 +58,7 @@ public class Game extends JPanel implements ActionListener {
 		// path
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 15; j++) {
-				g.drawImage(path[level.getMap().getStateAt(i, j)], j * interval, i * interval, this);
+				g.drawImage(path[level.getMap().getStateAt(j, i)], j * interval, i * interval, this);
 			}
 		}
 
@@ -120,6 +118,8 @@ public class Game extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		perTick();
+		repaint();
+		time++;
 	}
 
 	private void perTick() {
