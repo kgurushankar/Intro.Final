@@ -9,7 +9,7 @@ public class OrcAxe extends Enemy {
 
 	public OrcAxe(int x, int y, Game g) {
 		super(x, y, 200, (byte) 5, (byte) 20, g);
-		String fileloc = "Axe/WALK/WALK_001.png";
+		String fileloc = "Axe/WALK/WALK_000.png";
 		img = super.loadImageFromFile(fileloc);
 	}
 
