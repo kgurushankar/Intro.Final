@@ -75,7 +75,6 @@ public class Game extends JPanel implements ActionListener {
 		g.drawString("Balance: " + balance, interval / 2, (int) (interval * (10.75)));
 		g.drawString("Score: " + score, interval * 13 / 2, (int) (interval * (10.75)));
 		g.drawString("Lives: " + lives, interval * 12, (int) (interval * (10.75)));
-
 		// Right Area
 		Image t1 = loadImageFromFile("assets/Tower/Bunny.png").getScaledInstance(interval * 2, interval * 2,
 				Image.SCALE_SMOOTH);

@@ -7,9 +7,13 @@ public class Level1 implements Level {
 	Map map;
 
 	public Level1() {
-		map = new SnakeHorizontal();
+		int x = (int) (Math.random() * 2);
+		if (x == 0) {
+			map = new SnakeHorizontal();
+		} else if (x == 1) {
+			map = new Snake();
+		}
 	}
-
 
 	@Override
 	public Map getMap() {
